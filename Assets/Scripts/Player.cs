@@ -20,6 +20,13 @@ public class Player : MonoBehaviour
     //this is bot left top right corners
     Vector2 minBounds;
     Vector2 maxBounds;
+
+    Shooter shooter;
+
+    private void Awake()
+    {//shooter is get component shooter
+        shooter = GetComponent<Shooter>();
+    }
     private void Start()
     {
         InitBounds();
@@ -66,6 +73,15 @@ public class Player : MonoBehaviour
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
-        Debug.Log(rawInput);
+    }
+
+    void OnFire(InputValue value)
+    {
+        if(shooter != null) 
+        {//pretty muchif shooter is not null??
+            // we are firing = when button is pressed
+            shooter.isFiring = value.isPressed;
+            Debug.Log(rawInput);
+        }
     }
 }
