@@ -22,8 +22,6 @@ public class Pathfinging : MonoBehaviour
         //move - transform.position is waypoint at waypoint index.position
         transform.position = waypoints[waypointIndex].position;
     }
-
-    
     void Update()
     {
         FollowPath();
