@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
-{
+{//is it player or AI
+    [SerializeField] bool isPlayer;
     [SerializeField] int health = 50;
+    [SerializeField] int unitScore = 50;
     [SerializeField] ParticleSystem hitEffect;
 
     //since script is attached to enemies as well 
@@ -13,9 +15,14 @@ public class Health : MonoBehaviour
     [SerializeField] bool applyCameraShake;
     CameraShake cameraShake;
 
+    AudioPlayer audioPlayer;
+    ScoreKeeper scoreKeeper;
+
     private void Awake()
     {//camera has find object of type built in it
         cameraShake = Camera.main.GetComponent<CameraShake>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,10 +45,21 @@ public class Health : MonoBehaviour
     void TakeDamage(int damage)
     {
         health -= damage;
+        audioPlayer.PlayGetHitClip();
         if (health <= 0)
-        { 
-            Destroy(gameObject);
+        {
+            Die();
+            
         }
+    }
+    public void Die()
+    {
+        if (!isPlayer)
+        {
+            scoreKeeper.ModifyScore(unitScore);
+            
+        }
+        Destroy(gameObject);
     }
 
     void PlayHitEffect()
@@ -62,4 +80,9 @@ public class Health : MonoBehaviour
             cameraShake.Play();
         }
     }
+    public int GetHealth()
+    {
+        return health;
+    }
+
 }

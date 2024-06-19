@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         {//pretty muchif shooter is not null??
             // we are firing = when button is pressed
             shooter.isFiring = value.isPressed;
-            Debug.Log(rawInput);
+            //Debug.Log(rawInput);
         }
     }
 }
