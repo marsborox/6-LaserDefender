@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     ScoreKeeper scoreKeeper;
     void Awake()
     {
-        scoreKeeper = GetComponent<ScoreKeeper>();
+        scoreKeeper =  FindObjectOfType<ScoreKeeper>();
     }
     public void LoadGame()
     {
@@ -37,4 +37,5 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(sceneName);
     }
+
 }

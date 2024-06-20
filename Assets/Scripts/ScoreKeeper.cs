@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreKeeper : MonoBehaviour
 {//doesnt has to be SF
  //but sometimes we might want to test this one day
-    int score = 0;
+    int score;
 
     static ScoreKeeper instance;
     void Awake()
