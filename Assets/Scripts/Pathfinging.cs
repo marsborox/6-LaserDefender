@@ -9,7 +9,6 @@ public class Pathfinging : MonoBehaviour
     List<Transform>  waypoints;
     int waypointIndex = 0;
 
-
     private void Awake()
     {
        enemySpawner = FindObjectOfType<EnemySpawner>();

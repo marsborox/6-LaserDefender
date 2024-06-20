@@ -13,8 +13,35 @@ public class AudioPlayer : MonoBehaviour
     [Header("GetHit")]
     [SerializeField] AudioClip getHitClip;
     [SerializeField] [Range(0f,1f)] float getHitVolume = 1f;
-    
-    
+
+    static AudioPlayer instance;
+
+    /*public AudioPlayer GetInstance()
+    { 
+        return instance;
+    }*/
+
+
+    private void Awake()
+    {
+        ManageSingleton();
+    }
+    void ManageSingleton()
+    {//it will track of how many instances of audio player exist
+
+        //int instanceCount = FindObjectsOfType(GetType()).Length;
+        //if (instanceCount > 1)
+        if(instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     public void PlayShootingClip()
     {
