@@ -7,7 +7,7 @@ public class ScoreKeeper : MonoBehaviour
  //but sometimes we might want to test this one day
     int score;
 
-    static ScoreKeeper instance;
+    public static ScoreKeeper instance;
     void Awake()
     {
         ManageSingleton();
